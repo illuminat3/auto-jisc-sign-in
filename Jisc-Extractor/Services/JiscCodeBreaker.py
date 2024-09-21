@@ -1,5 +1,5 @@
 import requests
-import threading
+import concurrent.futures
 
 class JiscCodeBreaker:
     def __init__(self, headers, eventId, searchValueLow = 0, searchValueHigh = 999999, threadCount = 10):
