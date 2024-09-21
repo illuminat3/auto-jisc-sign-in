@@ -17,7 +17,7 @@ def Main() -> None:
     jiscEventsExtractor = JiscEventsExtractor(headers)
     lectures = jiscEventsExtractor.GetEvents()
 
-    threadCount = 4*systemProfiler.GetCoreCount() 
+    threadCount = 4 * systemProfiler.GetCoreCount() 
 
     jiscCodeBreaker = JiscCodeBreaker(headers, lectures[0], threadCount=threadCount)
     jiscCodeBreaker.GetCode()  
