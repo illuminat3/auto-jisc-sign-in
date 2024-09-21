@@ -1,17 +1,22 @@
 # auto-jisc-sign-in
 
-Automatically signs you into your jisc lecture 
+Automatically signs you into your jisc lecture  
 
 ## Tutorial
 
-You will need to manually grab the headers and save it to headers.txt.  
-As long as this is done correctly you should be fine  
+Once run it will open a browser, this will take you to the jisc login page.  
+You will need to login and reach the /home page.  
+Once on this page the browser should automatically close.  
+This extracts the token cookie which allows for requests to the jisc API.  
+The program will then start brute forcing the outcome.  
 
 ## Explanation
 
 This works by brute forcing the event pin. This is because jisc uses a simple api enpoint that simply takes a lecture id and 6 digit lecture code.  
-This leaves only 1 million options which we can slowly send to eventually brute force it whilst avoiding overloading the servers.  
-Firstly we grab the id for the current lecture from [Jisc Lecture Endpoint](https://api.la.jisc.ac.uk/event/timetable)  
+This leaves only 1 million options which we can send to eventually brute force it.  
+From testing this will make the api run about 10 times slower per 40 requests per second.  
+This doesn't appear to have any negative impacts as the api is very solid.  
+So to do this we grab the id for the current lecture from [Jisc Lecture Endpoint](https://api.la.jisc.ac.uk/event/timetable)  
 This will return a list of timestamps.  
 We will then filter this for the current time and look for any that match. If we find one that matches we check for the `isCancelled` property.  
 If the property is false we will then take the `eventId` property from it and subsitute this into the [Jisc Checkin Endpoint](https://api.la.jisc.ac.uk/event/lookup/000000?id=eventId)
