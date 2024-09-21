@@ -2,9 +2,11 @@ from Services.Setup import *
 from Services.JiscTokenExtractor import *
 from Services.JiscEventsExtractor import *
 from Services.JiscCodeBreaker import *
+from Services.SystemProfiler import *
 
 def Main() -> None:
     setup = Setup("Jisc-Extractor/requirements.txt")
+    systemProfiler = SystemProfiler()
 
     setup.install_packages
 
@@ -15,7 +17,9 @@ def Main() -> None:
     jiscEventsExtractor = JiscEventsExtractor(headers)
     lectures = jiscEventsExtractor.GetEvents()
 
-    jiscCodeBreaker = JiscCodeBreaker(headers, lectures[0])
+    threadCount = 4*systemProfiler.GetCoreCount() 
+
+    jiscCodeBreaker = JiscCodeBreaker(headers, lectures[0], threadCount=threadCount)
     jiscCodeBreaker.GetCode()  
     
 
