@@ -1,6 +1,7 @@
 from Services.Setup import *
 from Services.JiscTokenExtractor import *
 from Services.JiscEventsExtractor import *
+from Services.JiscCodeBreaker import *
 
 def Main() -> None:
     setup = Setup("Jisc-Extractor/requirements.txt")
@@ -12,11 +13,10 @@ def Main() -> None:
     headers = jiscTokenExtractor.GetJiscHeaders()
 
     jiscEventsExtractor = JiscEventsExtractor(headers)
-
     lectures = jiscEventsExtractor.GetEvents()
 
-    for lecture in lectures:
-        print(lecture)
+    jiscCodeBreaker = JiscCodeBreaker(headers, lectures[0])
+    jiscCodeBreaker.GetCode()  
     
 
 if __name__ == '__main__':
