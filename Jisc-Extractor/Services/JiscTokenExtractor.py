@@ -10,6 +10,10 @@ import time
 class JiscTokenExtractor:
     def __init__(self, username, password, email):
         self.options = Options()
+        self.options.add_argument('--window-position=0,3000') # hide the browser by making it appear offscreen (im such a good programmer)
+        self.options.add_argument('--no-sandbox') 
+        self.options.add_argument('--disable-dev-shm-usage')  
+        self.options.add_argument('--headless') 
         self.service = Service(ChromeDriverManager().install())
         self.driver = webdriver.Chrome(service=self.service, options=self.options)
         self.driver.execute_cdp_cmd("Network.enable", {})
