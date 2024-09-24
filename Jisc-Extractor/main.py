@@ -4,7 +4,7 @@ def Main() -> None:
 
     load_dotenv()
 
-    username = os.getenv("USERNAME")
+    username = os.getenv("STUDENTUSERNAME")
     password = os.getenv("PASSWORD")
     email = os.getenv("EMAIL")
 

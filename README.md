@@ -8,7 +8,7 @@ Create a `.env` file in the root of the project
 In here create 3 values  
 
 ``` env
-USERNAME = ""
+STUDENTUSERNAME = ""
 PASSWORD = ""
 EMAIL = ""
 ```
