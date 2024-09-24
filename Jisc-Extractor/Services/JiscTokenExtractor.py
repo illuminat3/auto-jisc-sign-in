@@ -9,6 +9,13 @@ import time
 
 class JiscTokenExtractor:
     def __init__(self, username, password, email):
+        self.username = username
+        self.password = password
+        self.email = email
+        self.login_url = "https://student.la.jisc.ac.uk/"
+        self.target_url = "https://student.la.jisc.ac.uk/home"
+    
+    def _setup(self):
         self.options = Options()
         self.options.add_argument('--window-position=0,3000') # hide the browser by making it appear offscreen (im such a good programmer)
         self.options.add_argument('--no-sandbox') 
@@ -17,14 +24,12 @@ class JiscTokenExtractor:
         self.service = Service(ChromeDriverManager().install())
         self.driver = webdriver.Chrome(service=self.service, options=self.options)
         self.driver.execute_cdp_cmd("Network.enable", {})
-        self.username = username
-        self.password = password
-        self.email = email
-        self.login_url = "https://student.la.jisc.ac.uk/"
-        self.target_url = "https://student.la.jisc.ac.uk/home"
-    
+        self.driver.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
+
+
     def GetJiscHeaders(self):
         try:
+            self._setup()
             self._load_auth_login()
             self._enter_email_and_continue()
             self._enter_credentials()
