@@ -4,7 +4,6 @@ import sys
 class Setup:
     def __init__(self, requirements_file='requirements.txt'):
         self.requirements_file = requirements_file
-        self.install_packages()
 
     def install_packages(self):
         try:
