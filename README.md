@@ -4,9 +4,16 @@ Automatically signs you into your jisc lecture
 
 ## Tutorial
 
-Once run it will open a browser, this will take you to the jisc login page.  
-You will need to login and reach the /home page.  
-Once on this page the browser should automatically close.  
+Create a `.env` file in the root of the project  
+In here create 3 values  
+
+``` env
+USERNAME = ""
+PASSWORD = ""
+EMAIL = ""
+```
+
+This will then allow for `selenium` to automatically login for you.  
 This extracts the token cookie which allows for requests to the jisc API.  
 The program will then start brute forcing the outcome.  
 
