@@ -19,7 +19,7 @@ def Main() -> None:
 
     threadCount = 4 * systemProfiler.GetCoreCount() 
 
-    jiscCodeBreaker = JiscCodeBreaker(headers, lectures[0],jiscTokenExtractor=jiscTokenExtractor, threadCount=threadCount)
+    jiscCodeBreaker = JiscCodeBreaker(headers, lectures[0], jiscTokenExtractor=jiscTokenExtractor, threadCount=threadCount)
     jiscCodeBreaker.GetCode()  
     
 
