@@ -8,6 +8,9 @@ def Main() -> None:
     password = os.getenv("PASSWORD")
     email = os.getenv("EMAIL")
 
+    if not all([username, password, email]):
+        raise ValueError("Missing one or more required environment variables: USERNAME, PASSWORD, EMAIL")
+
     systemProfiler = SystemProfiler()
 
     jiscTokenExtractor = JiscTokenExtractor(username, password, email)
