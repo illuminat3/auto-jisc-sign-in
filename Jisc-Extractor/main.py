@@ -5,12 +5,19 @@ from Services.JiscCodeBreaker import *
 from Services.SystemProfiler import *
 
 def Main() -> None:
+
+    # DO NOT COMMIT WITH ACTUAL VALUES!!!
+    username = ""
+    password = ""
+    email = "" 
+    # DO NOT COMMIT WITH ACTUAL VALUES!!!
+
     setup = Setup("Jisc-Extractor/requirements.txt")
     systemProfiler = SystemProfiler()
 
-    setup.install_packages
+    setup.install_packages()
 
-    jiscTokenExtractor = JiscTokenExtractor()
+    jiscTokenExtractor = JiscTokenExtractor(username, password, email)
 
     headers = jiscTokenExtractor.GetJiscHeaders()
 
