@@ -27,7 +27,6 @@ class JiscTokenExtractor:
         self.service = Service(ChromeDriverManager().install())
         self.driver = webdriver.Chrome(service=self.service, options=self.options)
         self.driver.execute_cdp_cmd("Network.enable", {})
-        self.driver.execute_cdp_cmd("Network.setCacheDisabled", {"cacheDisabled": True})
 
 
     def GetJiscHeaders(self):
@@ -38,7 +37,7 @@ class JiscTokenExtractor:
             self._enter_credentials()
             self._wait_for_home_page()
             headers = self._get_header()
-            print(headers)
+
             return headers
         
         finally:
