@@ -2,11 +2,11 @@ from Services.Setup import *
 
 def Main() -> None:
 
-    # DO NOT COMMIT WITH ACTUAL VALUES!!!
-    username = ""
-    password = ""
-    email = "" 
-    # DO NOT COMMIT WITH ACTUAL VALUES!!!
+    load_dotenv()
+
+    username = os.getenv("USERNAME")
+    password = os.getenv("PASSWORD")
+    email = os.getenv("EMAIL")
 
     systemProfiler = SystemProfiler()
 
@@ -32,5 +32,7 @@ if __name__ == '__main__':
     from Services.JiscEventsExtractor import *
     from Services.JiscCodeBreaker import *
     from Services.SystemProfiler import *
+    from dotenv import load_dotenv
+    import os
 
     Main()
