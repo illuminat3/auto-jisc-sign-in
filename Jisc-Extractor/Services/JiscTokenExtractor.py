@@ -21,6 +21,9 @@ class JiscTokenExtractor:
         self.options.add_argument('--no-sandbox') 
         self.options.add_argument('--disable-dev-shm-usage')  
         self.options.add_argument('--headless') 
+        self.options.add_argument('--disable-cache')
+        self.options.add_argument('--disk-cache-size=0')  
+        self.options.add_argument('--disable-application-cache')
         self.service = Service(ChromeDriverManager().install())
         self.driver = webdriver.Chrome(service=self.service, options=self.options)
         self.driver.execute_cdp_cmd("Network.enable", {})
@@ -35,7 +38,7 @@ class JiscTokenExtractor:
             self._enter_credentials()
             self._wait_for_home_page()
             headers = self._get_header()
-            
+            print(headers)
             return headers
         
         finally:
